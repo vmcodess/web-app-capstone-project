@@ -4,17 +4,43 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Blog</title>
-  <link rel="stylesheet" href="/public/styles/main.css">
+  <!-- <link rel="stylesheet" href="/public/styles/main.css"> -->
 
   <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <!-- use icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body class="#cfd8dc blue-grey lighten-4">
-  <!--header here -->
   <%- include("partials/header.ejs") %>
-  <h1>hello</h1>
 
+  <div class="container">
+    <!-- Page Content goes here -->  
+     <h1 class="center-align">hello</h1>
+  </div>
+
+
+
+  <% if (posts.length > 0) { %>
+      <% posts.forEach(post => { %>
+        <div>
+          <h2><%= post.title %></h2>
+          <p><%= post.content %></p>
+          <a href="/posts/<%= post.id %>/edit">Edit</a>
+          <form action="/posts/<%= post.id %>?_method=DELETE" method="POST">
+            <button type="submit">Delete</button>
+          </form>
+        </div>
+      <% }) %>
+
+
+  <% } else { %>
+      <h1>Create a new post:)</h1>
+  <% } %>
+
+
+  
 </body>
 </html>
