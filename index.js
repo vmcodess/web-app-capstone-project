@@ -9,7 +9,7 @@ app.use(express.static("/public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // create object to hold posts?
-const posts = [
+let posts = [
   {id: 1, title: "How I Made My First Million", content: "gang gang some random shit how I made my first million. worked hard. played harder. got lucky."},
   {id: 2, title: "Why I started breathing with my stomach.", content: "asdasd assd as das da sd as das da sd asdas da sd asd a sd a das d"}
 ];
@@ -69,8 +69,9 @@ app.post("/posts/:id/update", (req, res) => {
 });
 
 // delete route -- deleting posts
-app.delete("/posts/:id", (req, res) => {
+app.post("/posts/:id/delete", (req, res) => {
   posts = posts.filter(p => p.id != req.params.id);
+  console.log(req.params);
   res.redirect("/");
 });
 
